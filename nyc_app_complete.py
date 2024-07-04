@@ -4,6 +4,7 @@
 import pandas as pd
 import streamlit as st
 import joblib
+from io import StringIO
 
 st.write('Streamlit is an open-source app framework for Machine Learning and Data Science teams. For the docs, please click [here](https://docs.streamlit.io/en/stable/api.html). \
     This is is just a very small window into its capabilities.')
@@ -109,7 +110,30 @@ if prediction == 1:
 else:
     st.write('We predict that this is a negative review!')
 
+#######################################################################################################################################
+### MODEL INFERENCE 2
 
+#######################################################################################################################################
+###
+
+
+uploaded_file = st.file_uploader("Insert .pkl file")
+if uploaded_file is not None:
+    # A. Load model using joblib:
+    model2 = joblib.load(uploaded_file)
+
+st.subheader("Using your own models with user input")
+
+# B. Set up input field
+text = st.text_input('Enter your review text below', 'Best. Restaurant. Ever.')
+
+# C. Use the model to predict sentiment & write result
+prediction = model2.predict({text})
+
+if prediction == 1:
+    st.write('We predict that this is a positive review!')
+else:
+    st.write('We predict that this is a negative review!')
 
 #######################################################################################################################################
 ### Streamlit Advantages and Disadvantages
