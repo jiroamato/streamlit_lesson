@@ -117,7 +117,7 @@ else:
 ###
 
 
-uploaded_file = st.file_uploader("Insert .pkl file")
+uploaded_file = st.file_uploader("Insert .pkl file", type=["pkl"])
 if uploaded_file is not None:
     # Reading file
     bytes_data = uploaded_file.read()
